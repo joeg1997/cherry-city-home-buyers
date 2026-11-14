@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Your Free Cash Offer | Cherry City Home Buyers</title>
+  <meta name="description" content="Request a fast, fair, no-obligation cash offer on your property from Cherry City Home Buyers. Sell as-is with zero commissions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Cherry City Home Buyers Home">
+        <svg class="brand-svg" viewBox="0 0 54 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 24L27 5L49 24" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 20V43H43V20" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22.5" cy="31.5" r="4.5" fill="var(--brand)"/>
+          <circle cx="32" cy="33" r="4.5" fill="var(--brand-dark)"/>
+          <path d="M23 27C24 21 28 18 31 16" stroke="var(--emerald)" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M32 28.5C31.5 23 30 19 31 16" stroke="var(--emerald)" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <div class="brand-wordmark">
+          <span class="brand-top">CHERRY CITY</span>
+          <span class="brand-bottom">HOME BUYERS</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="index.html#benefits">Benefits</a>
+        <a href="index.html#how-it-works">How It Works</a>
+        <a href="index.html#situations">Situations</a>
+        <a href="index.html#faqs">FAQs</a>
+        <a href="index.html#about">About Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="offer-landing">
+    <div class="container offer-landing-grid">
+      <div class="offer-landing-copy">
+        <span class="eyebrow-tag">100% Free &bull; Zero Obligation</span>
+        <h1>Request Your Fair Cash Offer Today</h1>
+        <p class="hero-subhead" style="text-align:left;margin-left:0;">
+          Fill out the quick property form and our team will prepare a straightforward, no-obligation offer tailored to your property and timeline.
+        </p>
+
+        <ul class="direct-perks">
+          <li><strong>&#10003; Sell 100% As-Is:</strong> Skip repairs, contractors, inspections, and cleaning.</li>
+          <li><strong>&#10003; Zero Agent Commissions:</strong> Keep more in your pocket with $0 fees and standard closing costs covered.</li>
+          <li><strong>&#10003; Close When You’re Ready:</strong> Pick a fast 7&ndash;14 day close or schedule further out.</li>
+        </ul>
+      </div>
+
+      <div class="direct-offer-card">
+        <h2>Tell Us About Your Property</h2>
+        <p class="card-sub">All inquiries are strictly confidential.</p>
+
+        <form id="directOfferForm" novalidate autocomplete="off">
+          <div class="field">
+            <label for="dirName">Full Name <span class="req">*</span></label>
+            <input type="text" id="dirName" name="full_name" placeholder="Jane Doe" required autocomplete="name" />
+          </div>
+
+          <div class="field" style="position:relative;">
+            <label for="dirAddress">Property Address <span class="req">*</span></label>
+            <input type="text" id="dirAddress" name="property_address" class="js-address-autocomplete" placeholder="123 State St, Salem, OR 97301" required />
+            <ul class="autocomplete-list" role="listbox" hidden></ul>
+          </div>
+
+          <div class="form-row-2">
+            <div class="field">
+              <label for="dirPhone">Phone Number <span class="req">*</span></label>
+              <input type="tel" id="dirPhone" name="phone" class="js-phone-mask" placeholder="(503) 555-0199" required autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label for="dirEmail">Email Address <span class="req">*</span></label>
+              <input type="email" id="dirEmail" name="email" placeholder="you@example.com" required autocomplete="email" />
+            </div>
+          </div>
+
+          <div class="form-row-2">
+            <div class="field">
+              <label for="dirReason">Reason for Selling</label>
+              <select id="dirReason" name="reason">
+                <option value="Sell As-Is / Needs Repairs">Sell As-Is / Needs Repairs</option>
+                <option value="Inherited / Probate">Inherited / Probate</option>
+                <option value="Relocating">Relocating</option>
+                <option value="Rental / Tired Landlord">Rental / Tired Landlord</option>
+                <option value="Downsizing">Downsizing</option>
+                <option value="Behind on Payments / Foreclosure">Behind on Payments</option>
+                <option value="Exploring Options">Just Exploring Options</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="dirAsking">Estimated / Asking Price <span class="opt">(Optional)</span></label>
+              <input type="text" id="dirAsking" name="asking_price" placeholder="$350,000" />
+            </div>
+          </div>
+
+          <div class="consent-box">
+            <input type="checkbox" id="dirSmsConsent" name="sms_consent" value="yes" />
+            <label for="dirSmsConsent">
+              I agree to receive conversational SMS text messages and calls from <strong>Cherry City Home Buyers LLC</strong> regarding my property inquiry. Msg frequency varies; msg &amp; data rates may apply. Reply <strong>STOP</strong> to opt out or <strong>HELP</strong> for help. Consent is not a condition of purchase/sale. View <a href="privacy.html">Privacy Policy</a> &amp; <a href="terms.html">Terms</a>.
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-brand btn-block btn-lg" id="dirSubmitBtn">GET MY CASH OFFER</button>
+          <p class="form-status" id="dirFormStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-centered">
+      <div class="footer-legal-bar" style="border-top:none;padding-top:0;">
+        <span>&copy; 2026 Cherry City Home Buyers LLC</span>
+        <span class="sep">|</span>
+        <a href="index.html">Home</a>
+        <span class="sep">|</span>
+        <a href="privacy.html">Privacy Policy</a>
+        <span class="sep">|</span>
+        <a href="terms.html">Terms &amp; SMS Disclosures</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

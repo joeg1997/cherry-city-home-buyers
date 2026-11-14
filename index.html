@@ -3,259 +3,723 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cherry City Home Buyers | Direct Real Estate Solutions</title>
-  <meta name="description" content="Cherry City Home Buyers works directly with homeowners in Oregon and select US markets to provide fair, straightforward property offers with zero commissions and flexible closing timelines." />
+  <title>Cherry City Home Buyers | We Buy Houses Fast in Salem &amp; Across Oregon</title>
+  <meta name="description" content="Get a fair, no-obligation cash offer on your house in any condition — no repairs, zero agent fees, no stress. You pick the closing date with Cherry City Home Buyers." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Header -->
+
+  <!-- ==================================================================== -->
+  <!-- 1. TOP HEADER & FLAT NAVIGATION (Non-sticky, matching layout)        -->
+  <!-- ==================================================================== -->
   <header class="site-header">
-    <div class="container nav-inner">
-      <a href="#" class="brand" aria-label="Cherry City Home Buyers Home">
-        <span class="brand-mark" aria-hidden="true">CC</span>
-        <span class="brand-text">
-          <strong>Cherry City</strong>
-          <span>Home Buyers</span>
-        </span>
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Cherry City Home Buyers Home">
+        <svg class="brand-svg" viewBox="0 0 54 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 24L27 5L49 24" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 20V43H43V20" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22.5" cy="31.5" r="4.5" fill="var(--brand)"/>
+          <circle cx="32" cy="33" r="4.5" fill="var(--brand-dark)"/>
+          <path d="M23 27C24 21 28 18 31 16" stroke="var(--emerald)" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M32 28.5C31.5 23 30 19 31 16" stroke="var(--emerald)" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <div class="brand-wordmark">
+          <span class="brand-top">CHERRY CITY</span>
+          <span class="brand-bottom">HOME BUYERS</span>
+        </div>
       </a>
-      <nav class="nav-links" aria-label="Primary Navigation">
-        <a href="#about">About Us</a>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="main-nav" id="mainNav" aria-label="Main Navigation">
+        <a href="#benefits">Benefits</a>
         <a href="#how-it-works">How It Works</a>
-        <a href="#situations">Who We Help</a>
-        <a href="#get-offer" class="btn btn-sm btn-primary">Request an Offer</a>
+        <a href="#situations">Situations</a>
+        <a href="#faqs">FAQs</a>
+        <a href="#about">About Us</a>
+        <a href="get-offer.html" class="btn btn-brand nav-cta">Get A Cash Offer</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero + Lead Capture -->
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">Direct Property Buyers &bull; Oregon &amp; Select US Markets</div>
-          <h1>Sell Your Property Simply, Directly, and on Your Schedule.</h1>
-          <p class="lead">
-            At <strong>Cherry City Home Buyers</strong>, we work directly with property owners looking for a clear, stress-free alternative to listing on the open market—no repairs, no open houses, and zero agent commissions.
-          </p>
-          <ul class="trust-list">
-            <li>
-              <span class="check-icon" aria-hidden="true">&#10003;</span>
-              <div><strong>As-Is Condition:</strong> No repairs, painting, or cleanout needed—leave behind anything you don’t want.</div>
-            </li>
-            <li>
-              <span class="check-icon" aria-hidden="true">&#10003;</span>
-              <div><strong>Zero Agent Commissions:</strong> Work directly with our acquisitions team with transparent numbers from day one.</div>
-            </li>
-            <li>
-              <span class="check-icon" aria-hidden="true">&#10003;</span>
-              <div><strong>Flexible Closing Timeline:</strong> Close in as little as 14–21 days through a licensed title company, or pick the date that works for you.</div>
-            </li>
-          </ul>
+    <!-- ================================================================== -->
+    <!-- 2. CENTERED HERO SECTION & SINGLE-INPUT ADDRESS CAPTURE            -->
+    <!-- ================================================================== -->
+    <section class="hero-section">
+      <div class="hero-watermark" aria-hidden="true"></div>
+      <div class="container hero-centered">
+        <div class="rating-pill">
+          <span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>Trusted Direct Home Buyers in Oregon &amp; Select US Markets</span>
         </div>
 
-        <!-- Lead Capture Card -->
-        <div class="form-card" id="get-offer">
-          <div class="form-card-header">
-            <h2>Request a No-Obligation Consultation</h2>
-            <p>Tell us a little about the property and we’ll review your options with zero pressure.</p>
-          </div>
+        <h1>We Buy Houses Fast in <span class="text-brand">Salem &amp; Across Oregon</span></h1>
 
-          <form id="leadForm" novalidate>
-            <div class="form-row">
-              <div class="field">
-                <label for="fullName">Full Name <span class="req">*</span></label>
-                <input type="text" id="fullName" name="full_name" placeholder="Jane Doe" required autocomplete="name" />
-              </div>
-              <div class="field">
-                <label for="phone">Phone Number <span class="req">*</span></label>
-                <input type="tel" id="phone" name="phone" placeholder="(503) 555-0199" required autocomplete="tel" />
-              </div>
+        <p class="hero-subhead">
+          Get a fair cash offer on your house in any condition &mdash; no repairs, no agent fees, no stress. You pick the closing date.
+        </p>
+
+        <!-- Primary Address Capture Box -->
+        <div class="address-capture-card">
+          <p class="capture-title">Get your free, no-obligation cash offer</p>
+          <form class="address-bar-form js-address-trigger" autocomplete="off">
+            <div class="address-input-wrap">
+              <svg class="pin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              <input
+                type="text"
+                name="property_address"
+                class="address-input js-address-autocomplete"
+                placeholder="Enter your property address..."
+                aria-label="Enter your property address"
+                required
+              />
+              <ul class="autocomplete-list" role="listbox" hidden></ul>
             </div>
-
-            <div class="field">
-              <label for="email">Email Address <span class="req">*</span></label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email" />
-            </div>
-
-            <div class="field">
-              <label for="propertyAddress">Property Address <span class="req">*</span></label>
-              <input type="text" id="propertyAddress" name="property_address" placeholder="123 Main St, City, State ZIP" required autocomplete="street-address" />
-            </div>
-
-            <div class="form-row">
-              <div class="field">
-                <label for="situation">Property Situation</label>
-                <select id="situation" name="situation">
-                  <option value="Exploring Options">Just Exploring Options</option>
-                  <option value="Sell As-Is / Needs Repairs">Needs Repairs / Sell As-Is</option>
-                  <option value="Inherited / Estate Property">Inherited / Estate Property</option>
-                  <option value="Relocating">Relocating / Downsizing</option>
-                  <option value="Rental / Landlord">Rental Property / Tired Landlord</option>
-                  <option value="Flexible / Creative Terms">Open to Flexible / Creative Terms</option>
-                </select>
-              </div>
-              <div class="field">
-                <label for="timeline">Ideal Timeline</label>
-                <select id="timeline" name="timeline">
-                  <option value="ASAP (2-3 Weeks)">ASAP (2–3 Weeks)</option>
-                  <option value="30-60 Days">30–60 Days</option>
-                  <option value="60+ Days">60+ Days</option>
-                  <option value="No Rush / Just Curious">No Rush / Comparing Options</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="notes">Anything Else We Should Know? <span class="opt">(Optional)</span></label>
-              <textarea id="notes" name="notes" rows="2" placeholder="Approximate condition, occupancy, or questions..."></textarea>
-            </div>
-
-            <!-- Unchecked SMS Opt-In Checkbox (A2P 10DLC Carrier Compliant) -->
-            <div class="consent-box">
-              <input type="checkbox" id="smsConsent" name="sms_consent" value="yes" />
-              <label for="smsConsent">
-                I agree to receive conversational text messages and calls from <strong>Cherry City Home Buyers LLC</strong> regarding my property inquiry at the phone number provided. Message frequency varies. Msg &amp; data rates may apply. Reply <strong>STOP</strong> to opt out or <strong>HELP</strong> for assistance. Consent is not a condition of any purchase or sale. View our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.
-              </label>
-            </div>
-
-            <button type="submit" class="btn btn-primary btn-block" id="submitBtn">
-              Get My Property Options &rarr;
-            </button>
-            <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+            <button type="submit" class="btn btn-brand btn-lg">GET MY CASH OFFER</button>
           </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Us Section -->
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">About Us</span>
-          <h2>Who We Are &amp; How We Operate</h2>
-          <p>
-            Rooted in Oregon’s Willamette Valley and working across select US markets, <strong>Cherry City Home Buyers</strong> was built around one straightforward principle: property owners deserve honest numbers, clear communication, and practical options that fit their real-life timeline.
+          <p class="capture-alt">
+            Prefer a single-page form? <a href="get-offer.html">Submit full property details directly &rarr;</a>
           </p>
         </div>
 
-        <div class="cards-grid three-col">
-          <article class="info-card">
-            <div class="card-num">01</div>
-            <h3>Direct &amp; Transparent</h3>
-            <p>
-              We buy properties directly rather than listing them on the MLS. We walk you through how we evaluate your property so you can decide—without pressure—if working with us makes sense for your goals.
-            </p>
-          </article>
-
-          <article class="info-card">
-            <div class="card-num">02</div>
-            <h3>Tailored Solutions</h3>
-            <p>
-              Every homeowner’s situation is different. Whether you want a fast cash close on a fixer-upper or structured terms that maximize your equity without repairs, we tailor our offer around what matters most to you.
-            </p>
-          </article>
-
-          <article class="info-card">
-            <div class="card-num">03</div>
-            <h3>Licensed Title &amp; Escrow</h3>
-            <p>
-              Every transaction is closed through an established, licensed third-party title and escrow company so paperwork, payoffs, and closing funds are handled securely and professionally.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- How It Works -->
-    <section class="section section-alt" id="how-it-works">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Simple 3-Step Process</span>
-          <h2>How Selling to Cherry City Home Buyers Works</h2>
+        <!-- Inline Horizontal Value Checkmarks -->
+        <div class="hero-checks">
+          <span><strong class="check-mark">&#10003;</strong> No Repairs</span>
+          <span><strong class="check-mark">&#10003;</strong> Zero Agent Fees</span>
+          <span><strong class="check-mark">&#10003;</strong> Close in As Little As 7&ndash;14 Days</span>
         </div>
 
-        <div class="steps-grid">
-          <div class="step-card">
-            <span class="step-badge">Step 1</span>
-            <h3>Reach Out</h3>
-            <p>Submit your property address using the form above. We review local market data and property details right away.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-badge">Step 2</span>
-            <h3>Quick Conversation &amp; Offer</h3>
-            <p>We connect for a brief, friendly call to learn about the property’s condition and your timeline, then present clear written options.</p>
-          </div>
-          <div class="step-card">
-            <span class="step-badge">Step 3</span>
-            <h3>Close on Your Schedule</h3>
-            <p>If our offer is a fit, a local title company handles the closing on the date you choose—with no hidden fees or last-minute surprises.</p>
+        <!-- Trust Pillars Strip -->
+        <div class="trust-strip">
+          <span class="trust-strip-label">OUR BUYER PROMISE</span>
+          <div class="trust-badges-row">
+            <div class="trust-badge-item">100% As-Is Purchase</div>
+            <div class="trust-badge-item">Licensed Title &amp; Escrow</div>
+            <div class="trust-badge-item">$0 Commissions</div>
+            <div class="trust-badge-item">Flexible Move-Out Date</div>
+            <div class="trust-badge-item">No Open Houses</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Situations We Help With -->
-    <section class="section" id="situations">
+    <!-- ================================================================== -->
+    <!-- 3. HOW IT WORKS (3-Step Horizontal Process Cards)                  -->
+    <!-- ================================================================== -->
+    <section class="section" id="how-it-works">
       <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Common Situations</span>
-          <h2>When Homeowners Reach Out to Us</h2>
-          <p>Traditional listings work great for move-in-ready homes with flexible timelines—but when convenience, certainty, or speed matters more, we’re here to help.</p>
+        <div class="section-heading">
+          <span class="eyebrow-tag">How It Works</span>
+          <h2>Sell Your House in 3 Simple Steps</h2>
+          <p>A straightforward process built around your timeline &mdash; most homeowners receive written options within 24 hours.</p>
         </div>
 
-        <div class="cards-grid two-col">
-          <div class="situation-item">
-            <h3>Deferred Maintenance or Major Repairs</h3>
-            <p>Skip contractor bids, roof or foundation repairs, inspections, and months of holding costs. We buy properties completely as-is.</p>
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="step-circle">1</div>
+            <h3>Tell Us About Your House</h3>
+            <p>Enter your property address above and answer a few quick questions about the home’s condition and your ideal timeline.</p>
           </div>
-          <div class="situation-item">
-            <h3>Inherited or Estate Properties</h3>
-            <p>Managing an out-of-area or inherited home can feel overwhelming. Take the belongings you want to keep and leave the rest to us.</p>
+
+          <div class="process-card">
+            <div class="step-circle">2</div>
+            <h3>Get Your Fair Cash Offer</h3>
+            <p>We review local market data and present a transparent, no-obligation offer with zero pressure to accept.</p>
           </div>
-          <div class="situation-item">
-            <h3>Rental Properties &amp; Tired Landlords</h3>
-            <p>Ready to transition out of managing tenants, turnovers, or upcoming capital expenses? We purchase single-family and small multifamily rentals directly.</p>
-          </div>
-          <div class="situation-item">
-            <h3>Relocation or Tight Timelines</h3>
-            <p>Moving for work, family, or a fresh start? Coordinate your exact closing date without worrying about buyer financing falling through at the last minute.</p>
+
+          <div class="process-card">
+            <div class="step-circle">3</div>
+            <h3>Pick Your Closing Date</h3>
+            <p>Close through a licensed local title company in as little as 7&ndash;14 days, or choose a later date that fits your move.</p>
           </div>
         </div>
 
-        <div class="cta-banner">
-          <div>
-            <h3>Have questions about a property?</h3>
-            <p>Start a no-obligation conversation with our team today.</p>
-          </div>
-          <a href="#get-offer" class="btn btn-primary">Request Your Consultation</a>
+        <div class="section-cta-wrap">
+          <button type="button" class="btn btn-brand js-open-modal">Get My Cash Offer</button>
         </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 4. SITUATIONS GRID (4x3 = 12 Custom Icon Cards)                    -->
+    <!-- ================================================================== -->
+    <section class="section section-muted" id="situations">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow-tag">Any Situation</span>
+          <h2>We Buy Houses in Any Situation</h2>
+          <p>Whatever challenge or transition you’re navigating, we help you sell cleanly and move forward with certainty.</p>
+        </div>
+
+        <div class="situations-grid">
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 10.5L12 3l9 7.5V21H3V10.5z"/><path d="M12 9v5m0 3h.01"/></svg></div>
+            <h3>Pre-Foreclosure</h3>
+            <p>Stop mounting arrears and protect your fresh start before auction deadlines.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg></div>
+            <h3>Divorce</h3>
+            <p>Settle shared property quickly and fairly without months of MLS showings.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15h6"/></svg></div>
+            <h3>Inherited / Probate</h3>
+            <p>Keep treasured belongings and leave unwanted furniture or cleanout to us.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></div>
+            <h3>Vacant Property</h3>
+            <p>Eliminate ongoing taxes, insurance, vandalism worries, and yard upkeep.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+            <h3>Relocation</h3>
+            <p>Coordinate your sale date with a new job or out-of-state move seamlessly.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+            <h3>Problem Tenants</h3>
+            <p>Step away from difficult leases, turnovers, or worn-down rental units.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <h3>Major Repairs</h3>
+            <p>Roof, foundation, plumbing, or fire/water damage &mdash; we buy 100% as-is.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <h3>Behind on Payments</h3>
+            <p>Explore cash or creative debt-relief structures tailored to your mortgage.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+            <h3>Downsizing / Health</h3>
+            <p>Transition to a lower-maintenance living arrangement without stress.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <h3>Out-of-State Owner</h3>
+            <p>Close 100% remotely via mobile notary and licensed title escrow.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <h3>Code Violations / Liens</h3>
+            <p>We work directly with title to resolve municipal liens or code notices at closing.</p>
+          </div>
+
+          <div class="situation-card">
+            <div class="sit-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <h3>Any Situation</h3>
+            <p>Simply want a private, guaranteed sale without strangers walking through? We’re ready.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 5. COMPARISON TABLE (Traditional Sale vs. Cherry City Home Buyers) -->
+    <!-- ================================================================== -->
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow-tag">The Smarter Way</span>
+          <h2>Why Sell to Cherry City Home Buyers?</h2>
+          <p>See how a direct sale compares side-by-side with listing through a traditional real estate agent.</p>
+        </div>
+
+        <div class="comparison-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Comparison</th>
+                <th>Traditional Agent Sale</th>
+                <th class="highlight-col">Cherry City Home Buyers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Written Offer Speed</strong></td>
+                <td class="neg-cell"><span class="x-icon">&#10005;</span> Weeks or months waiting on buyers</td>
+                <td class="pos-cell highlight-col"><span class="chk-icon">&#10003;</span> Cash offer within 24 hours</td>
+              </tr>
+              <tr>
+                <td><strong>Time to Close</strong></td>
+                <td class="neg-cell"><span class="x-icon">&#10005;</span> 45&ndash;90+ days &amp; bank appraisal delays</td>
+                <td class="pos-cell highlight-col"><span class="chk-icon">&#10003;</span> Close in as little as 7&ndash;14 days</td>
+              </tr>
+              <tr>
+                <td><strong>Commissions &amp; Fees</strong></td>
+                <td class="neg-cell"><span class="x-icon">&#10005;</span> ~6% agent commissions paid by you</td>
+                <td class="pos-cell highlight-col"><span class="chk-icon">&#10003;</span> Zero commissions or hidden fees</td>
+              </tr>
+              <tr>
+                <td><strong>Repairs &amp; Cleanout</strong></td>
+                <td class="neg-cell"><span class="x-icon">&#10005;</span> Out-of-pocket repairs &amp; buyer demands</td>
+                <td class="pos-cell highlight-col"><span class="chk-icon">&#10003;</span> No repairs or cleaning needed</td>
+              </tr>
+              <tr>
+                <td><strong>Standard Closing Costs</strong></td>
+                <td class="neg-cell"><span class="x-icon">&#10005;</span> ~2% closing costs deducted from net</td>
+                <td class="pos-cell highlight-col"><span class="chk-icon">&#10003;</span> We cover standard closing costs</td>
+              </tr>
+              <tr>
+                <td><strong>Property Condition</strong></td>
+                <td class="neg-cell"><span class="x-icon">&#10005;</span> Must pass strict lender inspections</td>
+                <td class="pos-cell highlight-col"><span class="chk-icon">&#10003;</span> Sell 100% as-is in any condition</td>
+              </tr>
+              <tr>
+                <td><strong>Showings &amp; Open Houses</strong></td>
+                <td class="neg-cell"><span class="x-icon">&#10005;</span> Constant showings &amp; weekend disruptions</td>
+                <td class="pos-cell highlight-col"><span class="chk-icon">&#10003;</span> Zero public showings</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section-cta-wrap">
+          <button type="button" class="btn btn-brand js-open-modal">Get My Cash Offer</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 6. BENEFITS GRID (2x3 = 6 Value Cards)                             -->
+    <!-- ================================================================== -->
+    <section class="section section-muted" id="benefits">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow-tag">Why Homeowners Choose Us</span>
+          <h2>The Easiest Way to Sell Your Home</h2>
+        </div>
+
+        <div class="benefits-grid">
+          <div class="benefit-card">
+            <div class="benefit-icon">&#128181;</div>
+            <h3>Direct Cash &amp; Creative Options</h3>
+            <p>No waiting on shaky retail mortgage approvals. We provide dependable cash offers—plus flexible terms if you want to maximize equity.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">&#9889;</div>
+            <h3>Close Fast</h3>
+            <p>Need to close in two weeks? Ready in 60 days? Because there is no traditional bank red tape, we move at your pace.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">&#127919;</div>
+            <h3>Zero Commissions</h3>
+            <p>Skip the 6% Realtor commission and surprise admin fees. The offer price on your agreement is transparent from day one.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">&#128295;</div>
+            <h3>No Repairs Needed</h3>
+            <p>Dated kitchen, leaky roof, unfinished projects, or full rooms of clutter—leave it all as-is and let our crew handle it after closing.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">&#128221;</div>
+            <h3>We Handle the Paperwork</h3>
+            <p>We coordinate directly with a reputable, licensed title and escrow company so every document and payoff is handled cleanly.</p>
+          </div>
+
+          <div class="benefit-card">
+            <div class="benefit-icon">&#128197;</div>
+            <h3>Your Closing Date</h3>
+            <p>Whether you need immediate proceeds or extra post-closing time to pack up at your own rhythm, you control the calendar.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 7. ABOUT US (2-Column Split Layout)                                -->
+    <!-- ================================================================== -->
+    <section class="section" id="about">
+      <div class="container about-split">
+        <div class="about-visual-card">
+          <div class="visual-badge">Transparent Offer Formula</div>
+          <h3>How We Calculate Your Offer</h3>
+          <p>No black-box algorithms or lowball games. We walk you through every number openly:</p>
+          <div class="formula-list">
+            <div class="formula-row">
+              <span>1. After-Repair Value (ARV)</span>
+              <strong>Recent Renovated Comps</strong>
+            </div>
+            <div class="formula-row">
+              <span>2. Renovation &amp; Holding Costs</span>
+              <strong>Updates We Take On</strong>
+            </div>
+            <div class="formula-row">
+              <span>3. Zero Commissions / Closing Covered</span>
+              <strong>Saved in Your Pocket</strong>
+            </div>
+            <div class="formula-row formula-result">
+              <span>= Your Net Offer</span>
+              <strong>Clear, Fair &amp; Guaranteed</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-copy">
+          <span class="eyebrow-tag">About Us</span>
+          <h2>Rooted in Oregon’s Cherry City. Built on Honesty.</h2>
+          <p>
+            <strong>Cherry City Home Buyers</strong> was founded to give homeowners in Salem, the Willamette Valley, and select US markets a respectful, straightforward way to sell property without the stress and uncertainty of listing on the MLS.
+          </p>
+          <p>
+            We know that behind every house is a real person making an important financial decision. If a traditional agent listing is genuinely your best move, we’ll tell you straight up. And when speed, privacy, or selling as-is makes more sense, we step in with clear written options and follow through on every word.
+          </p>
+          <a href="get-offer.html" class="btn btn-outline-brand">Request a Free Property Review &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 8. MID-PAGE REPEAT LEAD CAPTURE BANNER                             -->
+    <!-- ================================================================== -->
+    <section class="cta-band cta-band-dark">
+      <div class="container cta-band-inner">
+        <h2>Get Your Free Cash Offer Today</h2>
+        <p>No obligations. No pressure. Just a fair, honest offer for your property.</p>
+        <form class="address-bar-form js-address-trigger cta-band-form" autocomplete="off">
+          <div class="address-input-wrap">
+            <input
+              type="text"
+              name="property_address"
+              class="address-input js-address-autocomplete"
+              placeholder="Enter your property address..."
+              aria-label="Enter your property address"
+              required
+            />
+            <ul class="autocomplete-list" role="listbox" hidden></ul>
+          </div>
+          <button type="submit" class="btn btn-brand btn-lg">GET MY CASH OFFER</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 9. HOMEOWNER COMMITMENTS & INTERACTIVE FAQ ACCORDION               -->
+    <!-- ================================================================== -->
+    <section class="section" id="faqs">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow-tag">Common Questions</span>
+          <h2>Frequently Asked Questions</h2>
+          <p>Clear answers about how selling directly to Cherry City Home Buyers works.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>How is Cherry City Home Buyers different from a real estate agent?</summary>
+            <p>Real estate agents list your property on the MLS, host showings, and charge roughly 6% in commissions if they find a buyer whose bank loan gets approved. We are direct property buyers—we purchase your house directly (and/or with our investment partners), charge zero commissions, and let you skip repairs and showings completely.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Am I under any obligation if I enter my address?</summary>
+            <p>Zero obligation whatsoever. Submitting your property details simply lets us research your property, have a quick conversation about your goals, and present a written offer. Whether you accept, take time to think, or walk away is 100% up to you.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do I really not have to fix or clean anything?</summary>
+            <p>Not a thing. You don’t need to paint, patch drywall, replace appliances, haul off old furniture, or even sweep the floors. Take what you want to keep and leave the rest behind.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How fast can we actually close?</summary>
+            <p>Once we agree on terms and open escrow with a licensed title company, we can close in as little as 7 to 14 days—or set the closing date 30, 60, or 90 days out if you want extra time to organize your move.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What if my property has tenants, liens, or major repairs?</summary>
+            <p>We regularly purchase tenant-occupied rentals, inherited homes in probate, and houses needing major structural or cosmetic work. Standard title payoffs and municipal liens are coordinated directly through escrow at closing.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 10. SERVICE AREAS DIRECTORY (Hyper-Local City Cloud)               -->
+    <!-- ================================================================== -->
+    <section class="section section-muted" id="service-areas">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow-tag">Service Area</span>
+          <h2>Where We Buy Houses</h2>
+          <p>We buy houses across Oregon’s Willamette Valley, Pacific Northwest communities, and select US metro markets &mdash; click your city to start:</p>
+        </div>
+
+        <div class="city-cloud">
+          <button type="button" class="city-pill js-city-pick" data-city="Salem, OR">Salem, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Keizer, OR">Keizer, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Portland, OR">Portland, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Eugene, OR">Eugene, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Albany, OR">Albany, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Corvallis, OR">Corvallis, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Beaverton, OR">Beaverton, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Hillsboro, OR">Hillsboro, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Springfield, OR">Springfield, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Bend, OR">Bend, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Medford, OR">Medford, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Gresham, OR">Gresham, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Tigard, OR">Tigard, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Lake Oswego, OR">Lake Oswego, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Oregon City, OR">Oregon City, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="McMinnville, OR">McMinnville, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Newberg, OR">Newberg, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Woodburn, OR">Woodburn, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Silverton, OR">Silverton, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Dallas, OR">Dallas, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Monmouth, OR">Monmouth, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Independence, OR">Independence, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Stayton, OR">Stayton, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Lebanon, OR">Lebanon, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Redmond, OR">Redmond, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Grants Pass, OR">Grants Pass, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Tualatin, OR">Tualatin, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="West Linn, OR">West Linn, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Wilsonville, OR">Wilsonville, OR</button>
+          <button type="button" class="city-pill js-city-pick" data-city="Indianapolis, IN">Indianapolis, IN</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- 11. BOTTOM FINAL CTA BANNER (3rd Live Address Input)               -->
+    <!-- ================================================================== -->
+    <section class="cta-band cta-band-brand">
+      <div class="container cta-band-inner">
+        <h2>Ready to Sell Your House Fast?</h2>
+        <p>Get your free, no-obligation cash offer today &mdash; it only takes a minute.</p>
+        <form class="address-bar-form js-address-trigger cta-band-form" autocomplete="off">
+          <div class="address-input-wrap">
+            <input
+              type="text"
+              name="property_address"
+              class="address-input js-address-autocomplete"
+              placeholder="Enter your property address..."
+              aria-label="Enter your property address"
+              required
+            />
+            <ul class="autocomplete-list" role="listbox" hidden></ul>
+          </div>
+          <button type="submit" class="btn btn-dark btn-lg">GET MY CASH OFFER</button>
+        </form>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- ==================================================================== -->
+  <!-- 12. CENTERED CLEAN WHITE FOOTER (Matching reference structure)       -->
+  <!-- ==================================================================== -->
   <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <strong>Cherry City Home Buyers</strong>
-        <p class="disclosure">
-          Cherry City Home Buyers LLC is a private real estate investment and acquisitions company. We purchase properties directly as principals (and/or assigns) for investment purposes and do not represent property owners as licensed real estate brokers, agents, or attorneys.
-        </p>
-      </div>
-      <div class="footer-links">
-        <a href="#about">About Us</a>
+    <div class="container footer-centered">
+      <a href="index.html" class="brand-logo footer-logo" aria-label="Cherry City Home Buyers">
+        <svg class="brand-svg" viewBox="0 0 54 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 24L27 5L49 24" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 20V43H43V20" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22.5" cy="31.5" r="4.5" fill="var(--brand)"/>
+          <circle cx="32" cy="33" r="4.5" fill="var(--brand-dark)"/>
+          <path d="M23 27C24 21 28 18 31 16" stroke="var(--emerald)" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M32 28.5C31.5 23 30 19 31 16" stroke="var(--emerald)" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <div class="brand-wordmark">
+          <span class="brand-top">CHERRY CITY</span>
+          <span class="brand-bottom">HOME BUYERS</span>
+        </div>
+      </a>
+
+      <nav class="footer-nav" aria-label="Footer Navigation">
+        <a href="index.html">Home</a>
+        <a href="get-offer.html">Get a Cash Offer</a>
         <a href="#how-it-works">How It Works</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#situations">Situations</a>
+        <a href="#faqs">FAQs</a>
+        <a href="#about">About Us</a>
+        <a href="get-offer.html">Contact Us</a>
+      </nav>
+
+      <p class="footer-seo-text">
+        <strong>Cherry City Home Buyers</strong> buys houses as-is across Oregon and select US markets, including Salem, Keizer, Portland, Eugene, Albany, Corvallis, Beaverton, Hillsboro, Springfield, Tigard, Oregon City, McMinnville, Newberg, Woodburn, Silverton, Dallas, Monmouth, Independence, Stayton, Bend, Redmond, and Medford.
+        <br />
+        <span class="principal-note">Cherry City Home Buyers LLC is a private real estate investment company purchasing properties directly as a principal buyer (and/or assigns) and does not represent sellers as a licensed real estate broker or agent.</span>
+      </p>
+
+      <div class="footer-legal-bar">
+        <span>&copy; <span id="year">2026</span> Cherry City Home Buyers LLC</span>
+        <span class="sep">|</span>
         <a href="privacy.html">Privacy Policy</a>
+        <span class="sep">|</span>
         <a href="terms.html">Terms &amp; SMS Disclosures</a>
       </div>
     </div>
-    <div class="container footer-bottom">
-      <span>&copy; <span id="year">2026</span> Cherry City Home Buyers LLC. All rights reserved.</span>
-    </div>
   </footer>
+
+  <!-- ==================================================================== -->
+  <!-- INTERACTIVE 6-STEP MULTI-STEP LEAD CAPTURE MODAL WIZARD              -->
+  <!-- ==================================================================== -->
+  <div class="wizard-backdrop" id="offerWizardModal" role="dialog" aria-modal="true" aria-labelledby="wizardTitle" hidden>
+    <div class="wizard-modal">
+      <!-- Sticky Top Progress & Address Summary -->
+      <div class="wizard-topbar">
+        <div class="wizard-topbar-row">
+          <button type="button" class="wizard-back-btn" id="wizardBackBtn" hidden>&larr; Back</button>
+          <span class="wizard-progress-label" id="wizardStepLabel">Step 1 of 6</span>
+          <button type="button" class="wizard-close-btn" id="wizardCloseBtn" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="wizard-progress-track">
+          <div class="wizard-progress-fill" id="wizardProgressFill" style="width: 16%"></div>
+        </div>
+        <div class="wizard-address-summary" id="wizardAddressPill">
+          <strong>Property:</strong> <span id="wizardAddressText">Enter property address below</span>
+        </div>
+      </div>
+
+      <!-- Wizard Body -->
+      <div class="wizard-body">
+        <!-- Optional Step 0 if opened without typing an address first -->
+        <div class="wizard-step" data-step="0" hidden>
+          <h3 id="wizardTitle0">Where is the property located?</h3>
+          <p class="wizard-sub">Enter the street address and city so we can pull local market data.</p>
+          <div class="field">
+            <label for="modalAddressInput">Property Street Address <span class="req">*</span></label>
+            <input type="text" id="modalAddressInput" class="js-address-autocomplete" placeholder="123 State St, Salem, OR 97301" />
+            <ul class="autocomplete-list" role="listbox" hidden></ul>
+          </div>
+          <button type="button" class="btn btn-brand btn-block" id="modalAddressContinueBtn">Continue &rarr;</button>
+        </div>
+
+        <!-- Step 1: Property Type -->
+        <div class="wizard-step" data-step="1">
+          <h3 id="wizardTitle">What type of property are you looking to sell?</h3>
+          <div class="choice-grid cols-2">
+            <button type="button" class="choice-card" data-field="property_type" data-value="Single Family">Single Family</button>
+            <button type="button" class="choice-card" data-field="property_type" data-value="Multi-Family">Multi-Family</button>
+            <button type="button" class="choice-card" data-field="property_type" data-value="Condo">Condo</button>
+            <button type="button" class="choice-card" data-field="property_type" data-value="Townhome">Townhome</button>
+            <button type="button" class="choice-card" data-field="property_type" data-value="Commercial / Land">Commercial / Land</button>
+            <button type="button" class="choice-card" data-field="property_type" data-value="Mobile / Manufactured">Mobile / Manufactured</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Reason to Sell -->
+        <div class="wizard-step" data-step="2" hidden>
+          <h3>What is the primary reason you are looking to sell?</h3>
+          <div class="choice-grid cols-2">
+            <button type="button" class="choice-card" data-field="reason" data-value="Repairs / Sell As-Is">Repairs / Damage</button>
+            <button type="button" class="choice-card" data-field="reason" data-value="Inherited / Probate">Inherited</button>
+            <button type="button" class="choice-card" data-field="reason" data-value="Relocating">Relocating</button>
+            <button type="button" class="choice-card" data-field="reason" data-value="Tired Landlord">Tired Landlord</button>
+            <button type="button" class="choice-card" data-field="reason" data-value="Downsizing">Downsizing</button>
+            <button type="button" class="choice-card" data-field="reason" data-value="Financial Hardship">Financial Hardship</button>
+            <button type="button" class="choice-card" data-field="reason" data-value="Divorce">Divorce</button>
+            <button type="button" class="choice-card" data-field="reason" data-value="Foreclosure / Behind on Payments">Foreclosure / Payments</button>
+            <button type="button" class="choice-card" data-field="reason" data-value="Looking for a Quick Sale">Looking for a Quick Sale</button>
+            <button type="button" class="choice-card" data-field="reason" data-value="Just Curious / Exploring">Just Curious</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Timeline -->
+        <div class="wizard-step" data-step="3" hidden>
+          <h3>How quickly are you looking to sell your home?</h3>
+          <div class="choice-grid cols-2">
+            <button type="button" class="choice-card" data-field="timeline" data-value="ASAP (7-14 Days)">ASAP</button>
+            <button type="button" class="choice-card" data-field="timeline" data-value="Within 3 Months">Within 3 Months</button>
+            <button type="button" class="choice-card" data-field="timeline" data-value="Within 6 Months">Within 6 Months</button>
+            <button type="button" class="choice-card" data-field="timeline" data-value="In No Rush">In No Rush</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Condition -->
+        <div class="wizard-step" data-step="4" hidden>
+          <h3>What condition is your home in?</h3>
+          <div class="choice-grid cols-1">
+            <button type="button" class="choice-card" data-field="condition" data-value="Move-in ready with modern finishes">Move-in ready with modern finishes</button>
+            <button type="button" class="choice-card" data-field="condition" data-value="Move-in ready with older finishes">Move-in ready with older finishes</button>
+            <button type="button" class="choice-card" data-field="condition" data-value="Needs a few repairs">Needs a few repairs</button>
+            <button type="button" class="choice-card" data-field="condition" data-value="Needs major repairs">Needs major repairs</button>
+          </div>
+        </div>
+
+        <!-- Step 5: Listing Status -->
+        <div class="wizard-step" data-step="5" hidden>
+          <h3>Is your home currently listed for sale with an agent?</h3>
+          <div class="choice-grid cols-2">
+            <button type="button" class="choice-card" data-field="listed_with_agent" data-value="No">No</button>
+            <button type="button" class="choice-card" data-field="listed_with_agent" data-value="Yes">Yes</button>
+          </div>
+        </div>
+
+        <!-- Step 6: Contact Details & Carrier-Compliant Consent -->
+        <div class="wizard-step" data-step="6" hidden>
+          <div class="step6-header">
+            <span class="step6-badge">&#10003; 100% Complete</span>
+            <h3>Perfect! We buy houses in your area.</h3>
+            <p class="wizard-sub">Get your no-obligation cash offer directly from us. Our service is 100% free with zero pressure to move forward.</p>
+          </div>
+
+          <form id="wizardFinalForm" novalidate>
+            <div class="field">
+              <label for="wizName">Full Name <span class="req">*</span></label>
+              <input type="text" id="wizName" name="full_name" placeholder="Jane Doe" required autocomplete="name" />
+            </div>
+
+            <div class="form-row-2">
+              <div class="field">
+                <label for="wizEmail">Email Address <span class="req">*</span></label>
+                <input type="email" id="wizEmail" name="email" placeholder="you@example.com" required autocomplete="email" />
+              </div>
+              <div class="field">
+                <label for="wizPhone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="wizPhone" name="phone" class="js-phone-mask" placeholder="(503) 555-0199" required autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="consent-box">
+              <input type="checkbox" id="wizSmsConsent" name="sms_consent" value="yes" />
+              <label for="wizSmsConsent">
+                By checking this box, I consent to receive conversational text messages and calls from <strong>Cherry City Home Buyers LLC</strong> regarding my property inquiry. Msg frequency varies; msg &amp; data rates may apply. Reply <strong>STOP</strong> to opt out or <strong>HELP</strong> for help. Consent is not a condition of purchase/sale. See <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> &amp; <a href="terms.html" target="_blank" rel="noopener">Terms</a>.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-brand btn-block btn-lg" id="wizSubmitBtn">GET MY CASH OFFER</button>
+            <p class="form-status" id="wizFormStatus" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+
+        <!-- Confirmation Screen -->
+        <div class="wizard-step" data-step="7" hidden>
+          <div class="thankyou-box">
+            <div class="thankyou-icon">&#10003;</div>
+            <h3>We’ve Received Your Property Info!</h3>
+            <p>Thank you for reaching out to <strong>Cherry City Home Buyers</strong>. Our acquisitions team is reviewing <strong id="confirmAddrText">your property</strong> right now and will reach out shortly with your no-obligation options.</p>
+            <button type="button" class="btn btn-brand" id="wizardDoneBtn">Back to Website</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -4,20 +4,31 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Terms &amp; SMS Disclosures | Cherry City Home Buyers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
-    <div class="container nav-inner">
-      <a href="index.html" class="brand">
-        <span class="brand-mark" aria-hidden="true">CC</span>
-        <span class="brand-text">
-          <strong>Cherry City</strong>
-          <span>Home Buyers</span>
-        </span>
+    <div class="container header-inner">
+      <a href="index.html" class="brand-logo" aria-label="Cherry City Home Buyers Home">
+        <svg class="brand-svg" viewBox="0 0 54 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 24L27 5L49 24" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11 20V43H43V20" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22.5" cy="31.5" r="4.5" fill="var(--brand)"/>
+          <circle cx="32" cy="33" r="4.5" fill="var(--brand-dark)"/>
+          <path d="M23 27C24 21 28 18 31 16" stroke="var(--emerald)" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M32 28.5C31.5 23 30 19 31 16" stroke="var(--emerald)" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+        <div class="brand-wordmark">
+          <span class="brand-top">CHERRY CITY</span>
+          <span class="brand-bottom">HOME BUYERS</span>
+        </div>
       </a>
-      <nav class="nav-links">
-        <a href="index.html" class="btn btn-sm btn-primary">&larr; Back to Home</a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="get-offer.html" class="btn btn-brand">Get A Cash Offer</a>
       </nav>
     </div>
   </header>
@@ -52,8 +63,14 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-bottom">
-      <span>&copy; 2026 Cherry City Home Buyers LLC. All rights reserved.</span>
+    <div class="container footer-centered">
+      <div class="footer-legal-bar" style="border-top:none;padding-top:0;">
+        <span>&copy; 2026 Cherry City Home Buyers LLC</span>
+        <span class="sep">|</span>
+        <a href="index.html">Home</a>
+        <span class="sep">|</span>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
     </div>
   </footer>
 </body>
