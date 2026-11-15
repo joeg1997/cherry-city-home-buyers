@@ -9,7 +9,7 @@
 const SITE_CONFIG = {
   web3FormsAccessKey: "",
   customWebhookUrl: "",
-  fallbackContactEmail: ""
+  fallbackContactEmail: "joe@cherrycityhomebuyersllc.org"
 };
 
 document.addEventListener("DOMContentLoaded", () => {
