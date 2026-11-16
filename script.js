@@ -57,9 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Optional session override for testing live Cloudflare Quick Tunnels (?crm_webhook=https://...)
   const queryWebhook = (urlParams.get("crm_webhook") || "").trim();
-  const activeWebhookUrl =
-    /^https:\/\/.+/i.test(queryWebhook) || /^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?\//i.test(queryWebhook)
-      ? queryWebhook
+  const isValidWebhook = (u) =>
+    /^https:\/\/.+/i.test(u) || /^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?\//i.test(u);
+  if (isValidWebhook(queryWebhook)) {
+    try {
+      sessionStorage.setItem("cchb_crm_webhook", queryWebhook);
+    } catch (_) {}
+  }
+  let storedWebhook = "";
+  try {
+    storedWebhook = (sessionStorage.getItem("cchb_crm_webhook") || "").trim();
+  } catch (_) {}
+  const activeWebhookUrl = isValidWebhook(queryWebhook)
+    ? queryWebhook
+    : isValidWebhook(storedWebhook)
+      ? storedWebhook
       : SITE_CONFIG.customWebhookUrl;
 
   // Live US Street Address Autocomplete (Photon / OpenStreetMap — Free, Zero API Key Required)
