@@ -2,9 +2,12 @@
  * Cherry City Home Buyers — Interactive Address Autocomplete & 6-Step Offer Wizard
  *
  * Lead Delivery Setup ($0):
- * 1. Paste a free Web3Forms key (https://web3forms.com) into web3FormsAccessKey
- *    to deliver every inquiry directly to your Google Workspace inbox.
- * 2. Or set customWebhookUrl to a Formspree / Google Apps Script / CRM webhook URL.
+ * 1. Set customWebhookUrl to your CRM's public HTTPS webhook endpoint:
+ *    e.g. "https://<your-crm-domain-or-cloudflare-tunnel>/api/webhooks/website-lead"
+ *    (Run `cloudflared tunnel --url http://127.0.0.1:8000` on Windows or host CRM on Render/Railway.)
+ * 2. Optional backup: paste a free Web3Forms key (https://web3forms.com) into web3FormsAccessKey
+ *    to also send every inquiry directly to your Google Workspace inbox.
+ *    Both channels run simultaneously when configured.
  */
 const SITE_CONFIG = {
   web3FormsAccessKey: "",
@@ -51,6 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
     utm_campaign: urlParams.get("utm_campaign") || "",
     gclid: urlParams.get("gclid") || ""
   };
+
+  // Optional session override for testing live Cloudflare Quick Tunnels (?crm_webhook=https://...)
+  const queryWebhook = (urlParams.get("crm_webhook") || "").trim();
+  const activeWebhookUrl =
+    /^https:\/\/.+/i.test(queryWebhook) || /^http:\/\/(127\.0\.0\.1|localhost)(:\d+)?\//i.test(queryWebhook)
+      ? queryWebhook
+      : SITE_CONFIG.customWebhookUrl;
 
   // Live US Street Address Autocomplete (Photon / OpenStreetMap — Free, Zero API Key Required)
   function attachAutocomplete(input) {
@@ -113,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".js-address-autocomplete").forEach(attachAutocomplete);
 
-  // Shared Lead Submission Dispatcher
+  // Shared Lead Submission Dispatcher (Concurrent CRM Webhook + Email Backup)
   async function submitLeadPayload(payload) {
     const fullPayload = {
       ...payload,
@@ -121,26 +131,50 @@ document.addEventListener("DOMContentLoaded", () => {
       submitted_at: new Date().toISOString()
     };
 
-    if (SITE_CONFIG.web3FormsAccessKey) {
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: SITE_CONFIG.web3FormsAccessKey,
-          subject: `New Cash Offer Inquiry: ${fullPayload.property_address}`,
-          from_name: "Cherry City Home Buyers Website",
-          ...fullPayload
+    const requests = [];
+
+    if (activeWebhookUrl) {
+      requests.push(
+        fetch(activeWebhookUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(fullPayload)
+        }).then((res) => {
+          if (!res.ok) throw new Error(`CRM webhook returned HTTP ${res.status}`);
+          return res.json().catch(() => ({}));
         })
-      });
-      if (!res.ok) throw new Error("Web3Forms request failed");
-    } else if (SITE_CONFIG.customWebhookUrl) {
-      const res = await fetch(SITE_CONFIG.customWebhookUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(fullPayload)
-      });
-      if (!res.ok) throw new Error("Webhook request failed");
-    } else if (SITE_CONFIG.fallbackContactEmail) {
+      );
+    }
+
+    if (SITE_CONFIG.web3FormsAccessKey) {
+      requests.push(
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify({
+            access_key: SITE_CONFIG.web3FormsAccessKey,
+            subject: `New Cash Offer Inquiry: ${fullPayload.property_address}`,
+            from_name: "Cherry City Home Buyers Website",
+            ...fullPayload
+          })
+        }).then((res) => {
+          if (!res.ok) throw new Error(`Web3Forms returned HTTP ${res.status}`);
+          return res.json().catch(() => ({}));
+        })
+      );
+    }
+
+    if (requests.length > 0) {
+      const results = await Promise.allSettled(requests);
+      const anySucceeded = results.some((r) => r.status === "fulfilled");
+      if (!anySucceeded) {
+        const firstErr = results.find((r) => r.status === "rejected");
+        throw new Error(firstErr?.reason?.message || "Lead delivery failed");
+      }
+      return;
+    }
+
+    if (SITE_CONFIG.fallbackContactEmail) {
       const subject = encodeURIComponent(`Cash Offer Inquiry: ${fullPayload.property_address}`);
       const lines = Object.entries(fullPayload)
         .filter(([, v]) => v)
