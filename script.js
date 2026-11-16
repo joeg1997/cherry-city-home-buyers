@@ -12,6 +12,7 @@
 const SITE_CONFIG = {
   web3FormsAccessKey: "",
   customWebhookUrl: "",
+  webhookToken: "",
   fallbackContactEmail: "joe@cherrycityhomebuyersllc.org"
 };
 
@@ -146,10 +147,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const requests = [];
 
     if (activeWebhookUrl) {
+      const whHeaders = { "Content-Type": "application/json", Accept: "application/json" };
+      const tokenVal = (urlParams.get("crm_token") || SITE_CONFIG.webhookToken || "").trim();
+      if (tokenVal) whHeaders["X-Webhook-Token"] = tokenVal;
       requests.push(
         fetch(activeWebhookUrl, {
           method: "POST",
-          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          headers: whHeaders,
           body: JSON.stringify(fullPayload)
         }).then((res) => {
           if (!res.ok) throw new Error(`CRM webhook returned HTTP ${res.status}`);
