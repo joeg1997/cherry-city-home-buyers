@@ -11,11 +11,35 @@
  */
 const SITE_CONFIG = {
   googleScriptUrl: "https://script.google.com/macros/s/AKfycbwazGjVaW5O_jP49eCdZnm2wDhln1h1_JbBaaggddInqDB44EKwhFIOx1XQb9MsHF4xMg/exec",
-  web3FormsAccessKey: "12ed5a05-5800-4556-8b67-ef68169ab71e",
+  web3FormsAccessKey: "",
   customWebhookUrl: "",
   webhookToken: "",
   fallbackContactEmail: "joe@cherrycityhomebuyersllc.org"
 };
+
+function buildAerialPhotoUrl(lat, lon) {
+  const la = Number(lat);
+  const lo = Number(lon);
+  if (!Number.isFinite(la) || !Number.isFinite(lo) || (la === 0 && lo === 0)) return "";
+  const bbox = [
+    (lo - 0.0008).toFixed(6),
+    (la - 0.0005).toFixed(6),
+    (lo + 0.0008).toFixed(6),
+    (la + 0.0005).toFixed(6)
+  ].join(",");
+  return `https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${bbox}&bboxSR=4326&imageSR=3857&size=640,360&format=jpg&f=image`;
+}
+
+function buildGoogleMapsUrl(address, lat, lon) {
+  const la = Number(lat);
+  const lo = Number(lon);
+  if (Number.isFinite(la) && Number.isFinite(lo) && (la !== 0 || lo !== 0)) {
+    return `https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=${la.toFixed(6)},${lo.toFixed(6)}`;
+  }
+  return address
+    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`
+    : "";
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   const yearEl = document.getElementById("year");
@@ -92,6 +116,27 @@ document.addEventListener("DOMContentLoaded", () => {
       ? storedGoogleScript
       : SITE_CONFIG.googleScriptUrl;
 
+  const addressGeoCache = new Map();
+
+  function extractPhotonFeatureMeta(f) {
+    const p = (f && f.properties) || {};
+    const coords = (f && f.geometry && Array.isArray(f.geometry.coordinates)) ? f.geometry.coordinates : [];
+    const lon = coords.length >= 2 ? Number(coords[0]) : null;
+    const lat = coords.length >= 2 ? Number(coords[1]) : null;
+    const streetPart = [p.housenumber, p.street || p.name].filter(Boolean).join(" ").trim();
+    const formatted = [streetPart, p.city, p.state, p.postcode].filter(Boolean).join(", ");
+    return {
+      formatted,
+      street: streetPart,
+      city: p.city || "",
+      state: p.state || "",
+      zip: p.postcode || "",
+      county: (p.county || "").replace(/\s+County$/i, "").trim(),
+      latitude: Number.isFinite(lat) ? lat : null,
+      longitude: Number.isFinite(lon) ? lon : null
+    };
+  }
+
   // Live US Street Address Autocomplete (Photon / OpenStreetMap — Free, Zero API Key Required)
   function attachAutocomplete(input) {
     const list = input.parentElement.querySelector(".autocomplete-list");
@@ -123,16 +168,15 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           list.innerHTML = "";
           features.forEach((f) => {
-            const p = f.properties;
-            const streetPart = [p.housenumber, p.street || p.name].filter(Boolean).join(" ");
-            const formatted = [streetPart, p.city, p.state, p.postcode].filter(Boolean).join(", ");
-            if (!formatted) return;
+            const meta = extractPhotonFeatureMeta(f);
+            if (!meta.formatted) return;
             const li = document.createElement("li");
             li.setAttribute("role", "option");
-            li.textContent = formatted;
+            li.textContent = meta.formatted;
             li.addEventListener("mousedown", (ev) => {
               ev.preventDefault();
-              input.value = formatted;
+              input.value = meta.formatted;
+              addressGeoCache.set(meta.formatted.toLowerCase(), meta);
               list.hidden = true;
             });
             list.appendChild(li);
@@ -153,10 +197,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".js-address-autocomplete").forEach(attachAutocomplete);
 
+  async function resolveAddressGeo(rawAddress) {
+    const clean = (rawAddress || "").trim();
+    if (!clean) return null;
+    const cached = addressGeoCache.get(clean.toLowerCase());
+    if (cached) return cached;
+    try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 1500);
+      const res = await fetch(
+        `https://photon.komoot.io/api/?q=${encodeURIComponent(clean)}&lat=44.9429&lon=-123.0351&limit=1&lang=en`,
+        { signal: ctrl.signal }
+      );
+      clearTimeout(timer);
+      if (!res.ok) return null;
+      const data = await res.json();
+      const usMatch = (data.features || []).find(
+        (f) => f.properties && f.properties.countrycode === "US"
+      );
+      if (!usMatch) return null;
+      const meta = extractPhotonFeatureMeta(usMatch);
+      addressGeoCache.set(clean.toLowerCase(), meta);
+      return meta;
+    } catch (_) {
+      return null;
+    }
+  }
+
   // Shared Lead Submission Dispatcher (Concurrent Google Sheet/Email + CRM Webhook + Backup)
   async function submitLeadPayload(payload) {
+    const geo = await resolveAddressGeo(payload.property_address);
+    const lat = geo && geo.latitude != null ? geo.latitude : null;
+    const lon = geo && geo.longitude != null ? geo.longitude : null;
+    const streetViewUrl = buildAerialPhotoUrl(lat, lon);
+    const googleMapsUrl = buildGoogleMapsUrl(payload.property_address, lat, lon);
+
     const fullPayload = {
       ...payload,
+      city: payload.city || (geo && geo.city) || "",
+      state: payload.state || (geo && geo.state) || "",
+      zip: payload.zip || (geo && geo.zip) || "",
+      county: payload.county || (geo && geo.county) || "",
+      latitude: lat,
+      longitude: lon,
+      street_view_url: streetViewUrl,
+      google_maps_url: googleMapsUrl,
       ...attribution,
       submitted_at: new Date().toISOString()
     };
