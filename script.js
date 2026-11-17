@@ -2,14 +2,15 @@
  * Cherry City Home Buyers — Interactive Address Autocomplete & 6-Step Offer Wizard
  *
  * Lead Delivery Setup ($0):
- * 1. Set customWebhookUrl to your CRM's public HTTPS webhook endpoint:
+ * 1. Set googleScriptUrl to your Google Apps Script Web App URL (https://script.google.com/macros/s/.../exec)
+ *    for unlimited $0 Google Sheet logging + instant Google Workspace email notifications.
+ * 2. Set customWebhookUrl to your CRM's public HTTPS webhook endpoint:
  *    e.g. "https://<your-crm-domain-or-cloudflare-tunnel>/api/webhooks/website-lead"
- *    (Run `cloudflared tunnel --url http://127.0.0.1:8000` on Windows or host CRM on Render/Railway.)
- * 2. Optional backup: paste a free Web3Forms key (https://web3forms.com) into web3FormsAccessKey
- *    to also send every inquiry directly to your Google Workspace inbox.
- *    Both channels run simultaneously when configured.
+ * 3. Optional backup: paste a free Web3Forms key (https://web3forms.com) into web3FormsAccessKey.
+ *    All configured channels run simultaneously for redundancy.
  */
 const SITE_CONFIG = {
+  googleScriptUrl: "",
   web3FormsAccessKey: "12ed5a05-5800-4556-8b67-ef68169ab71e",
   customWebhookUrl: "",
   webhookToken: "",
@@ -75,6 +76,22 @@ document.addEventListener("DOMContentLoaded", () => {
       ? storedWebhook
       : SITE_CONFIG.customWebhookUrl;
 
+  const queryGoogleScript = (urlParams.get("google_script") || "").trim();
+  if (/^https:\/\/script\.google\.com\/macros\/s\/.+/i.test(queryGoogleScript)) {
+    try {
+      sessionStorage.setItem("cchb_google_script", queryGoogleScript);
+    } catch (_) {}
+  }
+  let storedGoogleScript = "";
+  try {
+    storedGoogleScript = (sessionStorage.getItem("cchb_google_script") || "").trim();
+  } catch (_) {}
+  const activeGoogleScriptUrl = /^https:\/\/script\.google\.com\/macros\/s\/.+/i.test(queryGoogleScript)
+    ? queryGoogleScript
+    : /^https:\/\/script\.google\.com\/macros\/s\/.+/i.test(storedGoogleScript)
+      ? storedGoogleScript
+      : SITE_CONFIG.googleScriptUrl;
+
   // Live US Street Address Autocomplete (Photon / OpenStreetMap — Free, Zero API Key Required)
   function attachAutocomplete(input) {
     const list = input.parentElement.querySelector(".autocomplete-list");
@@ -136,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".js-address-autocomplete").forEach(attachAutocomplete);
 
-  // Shared Lead Submission Dispatcher (Concurrent CRM Webhook + Email Backup)
+  // Shared Lead Submission Dispatcher (Concurrent Google Sheet/Email + CRM Webhook + Backup)
   async function submitLeadPayload(payload) {
     const fullPayload = {
       ...payload,
@@ -145,6 +162,24 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const requests = [];
+
+    if (activeGoogleScriptUrl) {
+      requests.push(
+        fetch(activeGoogleScriptUrl, {
+          method: "POST",
+          redirect: "follow",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify(fullPayload)
+        }).then(async (res) => {
+          if (!res.ok) throw new Error(`Google Script returned HTTP ${res.status}`);
+          const body = await res.json().catch(() => null);
+          if (!body || body.ok !== true) {
+            throw new Error(body?.error || "Google Script did not return JSON confirmation");
+          }
+          return body;
+        })
+      );
+    }
 
     if (activeWebhookUrl) {
       const whHeaders = { "Content-Type": "application/json", Accept: "application/json" };
