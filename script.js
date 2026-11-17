@@ -10,7 +10,7 @@
  *    Both channels run simultaneously when configured.
  */
 const SITE_CONFIG = {
-  web3FormsAccessKey: "",
+  web3FormsAccessKey: "12ed5a05-5800-4556-8b67-ef68169ab71e",
   customWebhookUrl: "",
   webhookToken: "",
   fallbackContactEmail: "joe@cherrycityhomebuyersllc.org"
