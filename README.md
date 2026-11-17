@@ -17,7 +17,10 @@ Static landing page, About Us overview, real estate property inquiry form, and c
      - `185.199.111.153`
 3. Once DNS propagates, return to GitHub **Settings → Pages** and check **Enforce HTTPS**.
 
-## Wire Lead Notifications to Your Google Workspace Email ($0)
+## Lead Notifications (Google Sheets + Google Workspace Email + Web3Forms Backup)
 
-1. Go to [web3forms.com](https://web3forms.com) and enter your Google Workspace email to get a free Access Key.
-2. Paste that key into `web3FormsAccessKey` at the top of `script.js`, commit, and push—every lead submission will arrive directly in your Workspace inbox.
+Every website inquiry from `index.html` (6-Step Offer Wizard) and `get-offer.html` dispatches concurrently via `SITE_CONFIG` in `script.js`:
+
+1. **Primary ($0, ~45,000/mo capacity):** `SITE_CONFIG.googleScriptUrl` logs every lead row directly into the **Cherry City Website Leads** Google Sheet and sends an instant notification email via Google Workspace to `joe@cherrycityhomebuyersllc.org` (with `Reply-To` set to the seller's email).
+2. **Redundant Backup ($0, 250/mo capacity):** `SITE_CONFIG.web3FormsAccessKey` sends a parallel backup notification via [Web3Forms](https://web3forms.com).
+3. **Optional Direct CRM Webhook:** Set `SITE_CONFIG.customWebhookUrl` to `https://<your-crm-host>/api/webhooks/website-lead` to also push leads live into **Cherry City CRM**.

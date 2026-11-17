@@ -10,7 +10,7 @@
  *    All configured channels run simultaneously for redundancy.
  */
 const SITE_CONFIG = {
-  googleScriptUrl: "",
+  googleScriptUrl: "https://script.google.com/macros/s/AKfycbwazGjVaW5O_jP49eCdZnm2wDhln1h1_JbBaaggddInqDB44EKwhFIOx1XQb9MsHF4xMg/exec",
   web3FormsAccessKey: "12ed5a05-5800-4556-8b67-ef68169ab71e",
   customWebhookUrl: "",
   webhookToken: "",
